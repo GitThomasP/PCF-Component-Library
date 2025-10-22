@@ -1,0 +1,162 @@
+
+.avatar-container {
+  pointer-events: none;
+  position: fixed;
+  z-index: 50;
+  transition: opacity 0.3s;
+}
+
+.avatar-shadow {
+  position: absolute;
+  inset: 0;
+  filter: blur(40px);
+  opacity: 0.3;
+  border-radius: 50%;
+  transform: scale(1.5);
+}
+
+.avatar-main {
+  position: relative;
+}
+/* === FACE FIX === */
+/* === STRONG OVERRIDES: GRINCH EXPRESSION + HAT === */
+
+/* Face: brighter top, darker bottom, for depth */
+.avatar-face {
+  background: radial-gradient(circle at 50% 25%, #b3ff70 0%, #3f9b34 85%) !important;
+  border: 2px solid #2b6425 !important;
+  box-shadow:
+    inset 0 -4px 8px rgba(0, 0, 0, 0.4),
+    0 8px 10px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Eyes: positioned evenly and scowling */
+.avatar-eye {
+  top: 24px !important;
+  width: 10px !important;
+  height: 10px !important;
+  background: #000 !important;
+  border: 2px solid #ffee33 !important;
+  border-radius: 50% !important;
+  box-shadow: 0 0 4px #ffee33 !important;
+  position: absolute !important;
+}
+
+.avatar-eye-left {
+  left: 14px !important;
+  transform: rotate(12deg) skewY(10deg) !important;
+}
+
+.avatar-eye-right {
+  right: 14px !important;
+  transform: rotate(-12deg) skewY(-10deg) !important;
+}
+
+/* Brows angled down toward center */
+.avatar-eye-left::before,
+.avatar-eye-right::before {
+  content: "" !important;
+  position: absolute !important;
+  top: -7px !important;
+  width: 18px !important;
+  height: 4px !important;
+  background: #111 !important;
+  border-radius: 2px !important;
+}
+.avatar-eye-left::before {
+  left: -4px !important;
+  transform: rotate(-25deg) !important;
+}
+.avatar-eye-right::before {
+  right: -4px !important;
+  transform: rotate(25deg) !important;
+}
+
+/* Nose */
+.avatar-mouth::before {
+  content: "" !important;
+  position: absolute !important;
+  top: -24px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 12px !important;
+  height: 8px !important;
+  background: #276025 !important;
+  border-radius: 50% !important;
+  box-shadow: inset 0 -1px 2px rgba(0,0,0,0.4) !important;
+}
+
+/* Angry mouth – inverted arch */
+.avatar-mouth {
+  position: absolute !important;
+  bottom: 16px !important;
+  left: 50% !important;
+  width: 32px !important;
+  height: 10px !important;
+  border-top: 3px solid #111 !important;
+  border-radius: 50% / 100% !important;
+  transform: translateX(-50%) rotate(12deg) !important;
+  background: transparent !important;
+}
+.avatar-mouth::after {
+  content: "" !important;
+  position: absolute !important;
+  right: -8px !important;
+  top: 0 !important;
+  width: 12px !important;
+  height: 6px !important;
+  border-top: 3px solid #111 !important;
+  border-radius: 50% / 100% !important;
+  transform: rotate(-25deg) !important;
+}
+
+/* === SANTA HAT FIX === */
+
+/* Red top, properly covering the head */
+.avatar-face::after {
+  content: "" !important;
+  position: absolute !important;
+  top: -30px !important;
+  left: 50% !important;
+  transform: translateX(-50%) rotate(-12deg) !important;
+  width: 78px !important;
+  height: 42px !important;
+  background: linear-gradient(180deg, #ff3333 0%, #a80b0b 100%) !important;
+  border: 2px solid #720707 !important;
+  border-radius: 60% 60% 10% 10% / 100% 100% 0 0 !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25) !important;
+  z-index: 4 !important;
+}
+
+/* White brim, curved properly across face */
+.avatar-ear-left::after {
+  content: "" !important;
+  position: absolute !important;
+  top: -10px !important;
+  left: -4px !important;
+  width: 66px !important;
+  height: 12px !important;
+  background: #fff !important;
+  border-radius: 9999px !important;
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, 0.9),
+    0 0 6px rgba(255, 255, 255, 0.8) !important;
+  transform: rotate(-10deg) !important;
+  z-index: 5 !important;
+}
+
+/* Pom-pom properly offset */
+.avatar-ear-right::after {
+  content: "" !important;
+  position: absolute !important;
+  top: -26px !important;
+  right: -12px !important;
+  width: 16px !important;
+  height: 16px !important;
+  background: #fff !important;
+  border-radius: 50% !important;
+  box-shadow:
+    0 0 6px rgba(255, 255, 255, 0.9),
+    0 2px 4px rgba(0, 0, 0, 0.25) !important;
+  z-index: 6 !important;
+}

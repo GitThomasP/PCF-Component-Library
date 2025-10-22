@@ -1,0 +1,160 @@
+/* Created plain CSS file to replace all Tailwind classes */
+
+.avatar-container {
+  pointer-events: none;
+  position: fixed;
+  z-index: 50;
+  transition: opacity 0.3s;
+}
+
+.avatar-shadow {
+  position: absolute;
+  inset: 0;
+  filter: blur(40px);
+  opacity: 0.3;
+  border-radius: 50%;
+  transform: scale(1.5);
+}
+
+.avatar-main {
+  position: relative;
+}
+
+.avatar-body {
+  position: relative;
+  width: 64px;
+  height: 80px;
+  border-radius: 2rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-face {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-eye {
+  position: absolute;
+  top: 16px;
+  width: 8px;
+  height: 8px;
+  background-color: #1a1a1a;
+  border-radius: 50%;
+  animation: blink 3s infinite;
+}
+
+.avatar-eye-left {
+  left: 8px;
+}
+
+.avatar-eye-right {
+  right: 8px;
+}
+
+@keyframes blink {
+  0%,
+  96%,
+  100% {
+    transform: scaleY(1);
+  }
+  98% {
+    transform: scaleY(0.1);
+  }
+}
+
+.avatar-mouth {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 6px;
+  background-color: rgba(26, 26, 26, 0.8);
+  border-radius: 9999px;
+}
+
+.avatar-blush {
+  position: absolute;
+  top: 20px;
+  width: 8px;
+  height: 4px;
+  opacity: 0.4;
+  border-radius: 9999px;
+  filter: blur(1px);
+}
+
+.avatar-blush-left {
+  left: 2px;
+}
+
+.avatar-blush-right {
+  right: 2px;
+}
+
+.avatar-ear {
+  position: absolute;
+  top: 12px;
+  width: 16px;
+  height: 24px;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.avatar-ear-left {
+  left: -8px;
+}
+
+.avatar-ear-right {
+  right: -8px;
+}
+
+.avatar-arm {
+  position: absolute;
+  top: 48px;
+  width: 12px;
+  height: 24px;
+  border-radius: 9999px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.avatar-arm-left {
+  left: -4px;
+}
+
+.avatar-arm-right {
+  right: -4px;
+}
+
+.avatar-sparkle {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.avatar-sparkle-1 {
+  top: -8px;
+  right: -8px;
+}
+
+.avatar-sparkle-2 {
+  bottom: -4px;
+  left: -8px;
+  animation-delay: 150ms;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
