@@ -13,6 +13,7 @@ export class Pl400Component
   private _upperCaseOnly: boolean;
   private _button: HTMLButtonElement;
   private _buttonHandler: EventListener;
+  private _textBoxHandler: EventListener;
   /**
    * Empty constructor.
    */
@@ -45,11 +46,13 @@ export class Pl400Component
     this._textBox = document.createElement("textarea");
     this._textBox.value = context.parameters.textValue.raw || "";
     this._mainDiv.appendChild(this._textBox);
+    //Add event listener
+    this._textBoxHandler = this.hasTextBoxChanged.bind(this);
+    this._textBox.addEventListener("input", this._textBoxHandler);
 
     //This creates a label
     this._label = document.createElement("label");
     this._mainDiv.appendChild(this._label);
-    this._upperCaseOnly = context.parameters.isUpperCaseOnly.raw || false;
 
     //Creates a button
     this._button = document.createElement("button");
@@ -63,11 +66,26 @@ export class Pl400Component
     container.appendChild(this._mainDiv);
   }
 
+  public hasTextBoxChanged() {
+    this._notifyOutputChanged();
+  }
 
    public clickHandler() {
     this._upperCaseOnly = !this._upperCaseOnly;
+
+    this.checkCasing();
+    this._notifyOutputChanged();
   };
 
+  public checkCasing() {
+    if (this._upperCaseOnly) {
+      this._label.innerHTML = "UPPERCASE ONLY";
+      this._textBox.value = this._textBox.value.toUpperCase();
+    } else if (!this._upperCaseOnly) {
+      this._label.innerHTML = "lowercase";
+      this._textBox.value = this._textBox.value.toLowerCase();
+    }
+  }
   /**
    * Called when any value in the property bag has changed. This includes field values, data-sets, global values such as container height and width, offline status, control metadata values such as label, visible, etc.
    * @param context The entire property bag available to control via Context Object; It contains values as set up by the customizer mapped to names defined in the manifest, as well as utility functions
@@ -76,17 +94,10 @@ export class Pl400Component
     // Add code to update control view
     //Setup for updating the value dynamically
     this._textBox.value = context.parameters.textValue.raw || "";
-    this._upperCaseOnly = context.parameters.isUpperCaseOnly.raw || false;
 
     //Not needed, sets value uppercase
 
-    if (this._upperCaseOnly) {
-      this._label.innerHTML = "UPPERCASE ONLY";
-      this._textBox.value = this._textBox.value.toUpperCase();
-    } else if (!this._upperCaseOnly) {
-      this._label.innerHTML = "lowercase";
-      this._textBox.value = this._textBox.value.toLowerCase();
-    }
+    this.checkCasing()
 
     //Notifies changes
     this._notifyOutputChanged();
@@ -99,8 +110,7 @@ export class Pl400Component
   public getOutputs(): IOutputs {
     return {
       //Setup to fetch the output
-      textValue: this._textBox.value,
-      isUpperCaseOnly: this._upperCaseOnly,
+      textValue: this._textBox.value
     };
   }
 
